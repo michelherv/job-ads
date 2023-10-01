@@ -15,6 +15,7 @@
     "baseUrl": ".",
     "paths": {
       "@jobcloud/admin/core/*": ["src/app/core/*"],
+      "@jobcloud/admin/features/*": ["src/app/features/*"],
       "@jobcloud/admin/models/*": ["src/app/models/*"],
       "@jobcloud/admin/services/*": ["src/app/services/*"],
       "@jobcloud/admin/stores/*": ["src/app/stores/*"],
