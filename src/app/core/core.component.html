@@ -1,0 +1,24 @@
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar
+      class="header"
+      [class.header--stickied]="headerStickied$ | async"
+    >
+      <a
+        class="product"
+        mat-button
+        [routerLink]="['/']"
+        aria-label="Move to home"
+      >
+        <img
+          class="product__logo"
+          src="/assets/jobcloud-logo.svg"
+          alt="JobCloud's logo"
+        />
+        <span class="product__name">Admin</span>
+      </a>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

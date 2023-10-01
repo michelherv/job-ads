@@ -1,7 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { CoreComponent } from '@jobcloud/admin/core/core.component';
+import { CORE_CONFIG } from '@jobcloud/admin/core/core.config';
 
-bootstrapApplication(AppComponent, appConfig).catch((err) =>
-  console.error(err)
-);
+bootstrapApplication(CoreComponent, CORE_CONFIG).catch(console.error);

@@ -14,7 +14,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": "jobcloud-admin",
             "style": "camelCase"
           }
         ],
@@ -22,7 +22,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
+            "prefix": "jobcloud-admin",
             "style": "kebab-case"
           }
         ]
@@ -32,6 +32,10 @@
       "files": ["*.html"],
       "extends": ["plugin:@nx/angular-template"],
       "rules": {}
+    },
+    {
+      "files": ["*.ts"],
+      "extends": ["plugin:@ngrx/strict"]
     }
   ]
 }

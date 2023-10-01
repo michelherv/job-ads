@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+@use 'commons/variables' as var;
+
+@include mat.core();
+@include mat.core-theme(var.$light-theme);
+@include mat.button-theme(var.$light-theme);
+@include mat.icon-button-theme(var.$light-theme);
+@include mat.sidenav-theme(var.$light-theme);
+@include mat.toolbar-theme(var.$light-theme);

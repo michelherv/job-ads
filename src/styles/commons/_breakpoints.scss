@@ -1,0 +1,28 @@
+$_screen-sm-min: 36rem;
+$_screen-md-min: 48rem;
+$_screen-lg-min: 62rem;
+$_screen-xl-min: 75rem;
+
+@mixin sm {
+  @media (min-width: #{$_screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$_screen-md-min}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$_screen-lg-min}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$_screen-xl-min}) {
+    @content;
+  }
+}
