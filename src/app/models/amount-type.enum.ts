@@ -1,0 +1,17 @@
+export enum AmountTypeEnum {
+  Price_01 = 'A delicious kebab to share together',
+  Price_02 = 'A warm hug to warm the heart',
+  Price_03 = 'A beautiful flower, a symbol of our friendship',
+  Price_04 = 'A sincere thank you, as your appreciation means a lot to me',
+  Price_05 = 'An artistic creation made by you, in any form',
+  Price_06 = 'A poem or a personalized song expressing our friendship',
+  Price_07 = 'A joke or a magic trick to brighten my day',
+  Price_08 = 'A lesson or demonstration of your fascinating skills or hobbies',
+  Price_09 = 'A fun hairstyling or makeup service for a friendly makeover',
+  Price_10 = 'A meal cooked by you with love, using my ingredients',
+  Price_11 = 'An assortment of quirky candies or treats to delight my taste buds',
+  Price_12 = 'A small quirky item from your personal collection, embodying your unique spirit',
+  Price_13 = 'A recommendation or a list of your favorite songs, movies, or books',
+  Price_14 = 'A gardening or decorating service to beautify our surroundings',
+  Price_15 = 'A car or bike ride to explore our city or nature together',
+}

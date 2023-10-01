@@ -14,7 +14,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jobcloud/admin/core/*": ["src/app/core/*"]
+      "@jobcloud/admin/core/*": ["src/app/core/*"],
+      "@jobcloud/admin/models/*": ["src/app/models/*"]
     },
     "useDefineForClassFields": false,
     "forceConsistentCasingInFileNames": true,
