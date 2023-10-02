@@ -17,7 +17,8 @@
       "@jobcloud/admin/core/*": ["src/app/core/*"],
       "@jobcloud/admin/models/*": ["src/app/models/*"],
       "@jobcloud/admin/services/*": ["src/app/services/*"],
-      "@jobcloud/admin/stores/*": ["src/app/stores/*"]
+      "@jobcloud/admin/stores/*": ["src/app/stores/*"],
+      "@jobcloud/backend/*": ["src/app/fake-backend/*"]
     },
     "useDefineForClassFields": false,
     "forceConsistentCasingInFileNames": true,
