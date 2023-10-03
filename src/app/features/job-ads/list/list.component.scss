@@ -1,3 +1,74 @@
+@use '@angular/material' as mat;
+@use 'commons/breakpoints' as breakpoints;
+
 :host {
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1em;
+  row-gap: 3em;
+
+  .cta-add-job-ad {
+    justify-self: end;
+  }
+
+  .job-ads {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
+    gap: 2em;
+  }
+
+  .job-ad {
+    @include mat.elevation(2);
+    @include mat.elevation-transition();
+    display: grid;
+    grid-template-areas:
+      'job-ad job-ad'
+      'action-left action-right';
+    padding: 1.25em;
+    gap: 2.5em 1em;
+
+    &__body {
+      grid-area: job-ad;
+    }
+
+    &__action:nth-child(2) {
+      grid-area: action-left;
+    }
+
+    &__action:nth-child(3) {
+      grid-area: action-right;
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:focus-within {
+      @include mat.elevation(6);
+    }
+  }
+
+  @include breakpoints.sm {
+    padding: 1.25em;
+  }
+
+  @include breakpoints.md {
+    padding: 2.5em;
+
+    .job-ads {
+      grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
+    }
+  }
+
+  @include breakpoints.xl {
+    padding: 4em;
+    row-gap: 4em;
+
+    .job-ads {
+      grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));
+    }
+  }
 }

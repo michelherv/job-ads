@@ -1,1 +1,40 @@
-<p>list works!</p>
+<h1>List of job ads</h1>
+
+<a
+  mat-fab
+  color="accent"
+  class="cta-add-job-ad"
+  [routerLink]="['creating']"
+  aria-label="Add a new job ad"
+>
+  <mat-icon>add</mat-icon>
+</a>
+
+<ng-container *ngIf="page$ | async as page">
+  <ul class="job-ads" *ngIf="page.items.length">
+    <li
+      class="job-ad"
+      *ngFor="let jobAd of page.items; let index = index; trackBy: trackJobAdBy"
+      role="article"
+      [attr.aria-label]="'Job ad N°' + (index + 1) + ' of ' + page.items.length"
+    >
+      <jobcloud-lib-job-ad-card class="job-ad__body" [model]="jobAd" />
+      <a
+        mat-flat-button
+        [routerLink]="['reading', jobAd.id]"
+        class="job-ad__action"
+      >
+        <mat-icon>visibility</mat-icon>
+        <span>Read</span>
+      </a>
+      <a
+        mat-flat-button
+        [routerLink]="['updating', jobAd.id]"
+        class="job-ad__action"
+      >
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </a>
+    </li>
+  </ul>
+</ng-container>
