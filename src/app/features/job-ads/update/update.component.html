@@ -1,1 +1,8 @@
-<p>update works!</p>
+<h1>Updating a job ad</h1>
+
+<jobcloud-lib-job-ad-scanner
+  *ngIf="jobAd$ | async as jobAd"
+  [model]="jobAd"
+  (modelChange)="doSubmit($event)"
+  (cancel)="doCancel()"
+></jobcloud-lib-job-ad-scanner>
