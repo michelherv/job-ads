@@ -1,6 +1,8 @@
 import { HttpEvent, HttpHandlerFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import { JobAd } from '@jobcloud/admin/models/job-ad';
 import { JobAdStatusEnum } from '@jobcloud/admin/models/job-ad-status.enum';
-import { Observable, of } from 'rxjs';
+import { JobAdDto } from '@jobcloud/admin/models/job-ad.dto';
+import { Observable, of, throwError } from 'rxjs';
 
 export const JobAdApi = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
   const baseUrl = 'http://jobcloud.test/api';
@@ -22,14 +24,46 @@ export const JobAdApi = (request: HttpRequest<unknown>, next: HttpHandlerFn): Ob
         })
       );
     }
+  } else if ('POST' === request.method) {
+    const jobAd = request.body as JobAd;
+    const jobAds = [
+      ...items,
+      {
+        ...jobAd,
+        id: generateId(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        _embedded: {},
+      } as JobAdDto,
+    ];
+    items = jobAds;
+
+    return of(new HttpResponse({ status: 200, body: items[items.length - 1] }));
+  } else if ('PUT' === request.method) {
+    const jobAd = request.body as JobAd;
+    const jobAds = [...items];
+    const index = jobAds.findIndex((item) => `${item.id}` === `${id}`);
+
+    if (index >= 0) {
+      jobAds.splice(index, 1, {
+        ...jobAds[index],
+        ...jobAd,
+        createdAt: jobAds[index].createdAt,
+        updatedAt: new Date(),
+      });
+      items = jobAds;
+      return of(new HttpResponse({ status: 200, body: items[index] }));
+    }
   }
 
-  throw new Error('An error occured');
+  return throwError(() => new Error('An error occured'));
 };
 
-const items = [
+const generateId = () => Math.ceil(Math.random() * 1000);
+
+let items: JobAdDto[] = [
   {
-    id: 1,
+    id: generateId(),
     title: 'Job Ad 1',
     description: 'Job Ad 1 Description',
     skills: ['Skill 1', 'Skill 2'],
@@ -45,7 +79,7 @@ const items = [
     },
   },
   {
-    id: 2,
+    id: generateId(),
     title: 'Job Ad 2',
     description: 'Job Ad 2 Description',
     skills: ['Skill 1', 'Skill 2'],
@@ -61,7 +95,7 @@ const items = [
     },
   },
   {
-    id: 3,
+    id: generateId(),
     title: 'Job Ad 3',
     description: 'Job Ad 3 Description',
     skills: ['Skill 1', 'Skill 2'],
@@ -77,7 +111,7 @@ const items = [
     },
   },
   {
-    id: 4,
+    id: generateId(),
     title: 'Job Ad 4',
     description: 'Job Ad 4 Description',
     skills: ['Skill 1', 'Skill 2'],
@@ -93,7 +127,7 @@ const items = [
     },
   },
   {
-    id: 5,
+    id: generateId(),
     title: 'Job Ad 5',
     description: 'Job Ad 5 Description',
     skills: ['Skill 1', 'Skill 2'],
@@ -109,7 +143,7 @@ const items = [
     },
   },
   {
-    id: 6,
+    id: generateId(),
     title: 'Job Ad 6',
     description: 'Job Ad 6 Description',
     skills: ['Skill 1', 'Skill 2'],
@@ -125,7 +159,7 @@ const items = [
     },
   },
   {
-    id: 7,
+    id: generateId(),
     title: 'Job Ad 7',
     description: 'Job Ad 7 Description',
     skills: ['Skill 1', 'Skill 2'],
@@ -141,7 +175,7 @@ const items = [
     },
   },
   {
-    id: 8,
+    id: generateId(),
     title: 'Job Ad 8',
     description: 'Job Ad 8 Description',
     skills: ['Skill 1', 'Skill 2'],
