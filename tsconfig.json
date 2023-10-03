@@ -19,7 +19,8 @@
       "@jobcloud/admin/models/*": ["src/app/models/*"],
       "@jobcloud/admin/services/*": ["src/app/services/*"],
       "@jobcloud/admin/stores/*": ["src/app/stores/*"],
-      "@jobcloud/backend/*": ["src/app/fake-backend/*"]
+      "@jobcloud/backend/*": ["src/app/fake-backend/*"],
+      "@jobcloud/libs/*": ["src/app/shared/*"]
     },
     "useDefineForClassFields": false,
     "forceConsistentCasingInFileNames": true,

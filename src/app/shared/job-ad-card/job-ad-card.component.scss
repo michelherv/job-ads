@@ -1,0 +1,35 @@
+@use '@angular/material' as mat;
+@use 'commons/variables' as var;
+
+:host {
+  display: grid;
+  grid-template-columns: minmax(auto, 5em) 1fr;
+  align-items: baseline;
+  gap: 1em 1.5em;
+
+  .property-name {
+    text-align: right;
+    font-size: x-small;
+    color: mat.get-color-from-palette(var.$primary-palette, 300);
+  }
+
+  ul.property-value {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    li {
+      padding: 0.125em 0.5em;
+      border-radius: 0.25em;
+      font-size: small;
+      background-color: mat.get-color-from-palette(var.$primary-palette, 100);
+      color: mat.get-color-from-palette(var.$primary-palette, 100-contrast);
+
+      &:not(:first-child) {
+        margin-left: 0.5em;
+      }
+    }
+  }
+}

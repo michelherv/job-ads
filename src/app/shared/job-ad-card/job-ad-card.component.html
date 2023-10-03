@@ -1,0 +1,55 @@
+<span class="property-name property-id" aria-hidden="true">Id</span>
+<span
+  class="property-value property-id"
+  [attr.aria-label]="'Job ad identifier'"
+  >{{ model.id }}</span
+>
+
+<span class="property-name property-title" aria-hidden="true">Title</span>
+<span
+  class="property-value property-title"
+  [attr.aria-label]="'Job ad title'"
+  >{{ model.title }}</span
+>
+
+<span class="property-name property-description" aria-hidden="true"
+  >Description</span
+>
+<span
+  class="property-value property-description"
+  [attr.aria-label]="'Job ad description'"
+  >{{ model.description }}</span
+>
+
+<span class="property-name property-skills" aria-hidden="true">Skills</span>
+<ul
+  class="property-value property-skills"
+  [attr.aria-label]="'Job ad required skills'"
+>
+  <li *ngFor="let skill of model.skills; trackBy: trackSkillBy">{{ skill }}</li>
+</ul>
+
+<span class="property-name property-status" aria-hidden="true">Status</span>
+<span
+  class="property-value property-status"
+  [attr.aria-label]="'Job ad status'"
+  >{{ model.status | jobAdStatusEnumToLabel | titlecase }}</span
+>
+
+<span class="property-name property-created-at" aria-hidden="true"
+  >Created at</span
+>
+<span
+  class="property-value property-created-at"
+  [attr.aria-label]="'Job ad created at'"
+  >{{ model.createdAt | date }}</span
+>
+
+<span class="property-name property-updated-at" aria-hidden="true"
+  >Updated at</span
+>
+<span
+  class="property-value property-updated-at"
+  [attr.aria-label]="'Job ad updated at'"
+  >{{ model.updatedAt | date }}</span
+>
