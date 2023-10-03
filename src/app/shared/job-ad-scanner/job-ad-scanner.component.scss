@@ -1,0 +1,17 @@
+:host {
+  display: block;
+
+  .job-ad {
+    display: grid;
+    grid-template-columns: minmax(auto, 45em);
+    align-items: baseline;
+    justify-content: center;
+    gap: 1em 1.5em;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1.5em;
+  }
+}

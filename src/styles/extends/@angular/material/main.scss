@@ -3,8 +3,13 @@
 
 @include mat.core();
 @include mat.core-theme(var.$light-theme);
+@include mat.form-field-theme(var.$light-theme);
+@include mat.input-theme(var.$light-theme);
+@include mat.select-theme(var.$light-theme);
+@include mat.chips-theme(var.$light-theme);
 @include mat.button-theme(var.$light-theme);
 @include mat.icon-button-theme(var.$light-theme);
+@include mat.fab-theme(var.$light-theme);
 @include mat.icon-theme(var.$light-theme);
 @include mat.sidenav-theme(var.$light-theme);
 @include mat.toolbar-theme(var.$light-theme);

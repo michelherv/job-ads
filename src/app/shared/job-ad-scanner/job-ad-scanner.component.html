@@ -1,0 +1,115 @@
+<form
+  (ngSubmit)="form.valid && modelChange.emit(form.value)"
+  #form="ngForm"
+  class="job-ad"
+>
+  <!-- reading id -->
+  <mat-form-field *ngIf="model?.id">
+    <mat-label>Id</mat-label>
+    <input matInput name="id" type="number" [ngModel]="model?.id" disabled />
+  </mat-form-field>
+
+  <!-- reading title -->
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input
+      matInput
+      name="title"
+      type="text"
+      [ngModel]="model?.title"
+      required
+    />
+  </mat-form-field>
+
+  <!-- reading description -->
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      name="description"
+      type="text"
+      [ngModel]="model?.description"
+      required
+    ></textarea>
+  </mat-form-field>
+
+  <!-- reading skills -->
+  <mat-form-field>
+    <mat-label>Skills</mat-label>
+    <mat-chip-grid
+      name="skills"
+      #chipGrid
+      [ngModel]="model?.skills"
+      #skillsModel="ngModel"
+      required
+    >
+      <mat-chip-row
+        *ngFor="
+          let skill of skillsModel.control.getRawValue();
+          trackBy: trackSkillBy
+        "
+        (removed)="removeKeyword(skill, skillsModel)"
+      >
+        {{ skill }}
+        <button matChipRemove aria-label="'remove ' + keyword">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    </mat-chip-grid>
+    <input
+      placeholder="New skill..."
+      [matChipInputFor]="chipGrid"
+      (matChipInputTokenEnd)="addSkill($event, skillsModel)"
+    />
+  </mat-form-field>
+
+  <!-- reading status -->
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select
+      name="status"
+      [ngModel]="model?.status ?? JobAdStatusEnum.Draft"
+    >
+      <mat-option [value]="JobAdStatusEnum.Draft">{{
+        JobAdStatusEnum.Draft | jobAdStatusEnumToLabel | titlecase
+      }}</mat-option>
+      <mat-option [value]="JobAdStatusEnum.Published">{{
+        JobAdStatusEnum.Published | jobAdStatusEnumToLabel | titlecase
+      }}</mat-option>
+      <mat-option [value]="JobAdStatusEnum.Archived">{{
+        JobAdStatusEnum.Archived | jobAdStatusEnumToLabel | titlecase
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- reading createdAt -->
+  <mat-form-field *ngIf="model?.createdAt">
+    <mat-label>Created at</mat-label>
+    <input
+      matInput
+      name="createdAt"
+      type="text"
+      [ngModel]="model?.createdAt | date"
+      disabled
+    />
+  </mat-form-field>
+
+  <!-- reading updatedAt -->
+  <mat-form-field *ngIf="model?.updatedAt">
+    <mat-label>Updated at</mat-label>
+    <input
+      matInput
+      name="updatedAt"
+      type="text"
+      [ngModel]="model?.updatedAt | date"
+      disabled
+    />
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-flat-button type="button" (click)="cancel.emit()">
+      Cancel
+    </button>
+    <button mat-flat-button color="accent" type="submit">Save</button>
+  </div>
+</form>
