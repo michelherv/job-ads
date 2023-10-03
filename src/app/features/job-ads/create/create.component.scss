@@ -1,3 +1,21 @@
+@use '@angular/material' as mat;
+@use 'commons/breakpoints' as breakpoints;
+
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3em;
+  padding: 1em;
+
+  @include breakpoints.sm {
+    padding: 1.25em;
+  }
+
+  @include breakpoints.md {
+    padding: 2.5em;
+  }
+
+  @include breakpoints.xl {
+    padding: 4em;
+  }
 }
