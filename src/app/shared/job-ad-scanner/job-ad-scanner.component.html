@@ -1,5 +1,5 @@
 <form
-  (ngSubmit)="form.valid && modelChange.emit(form.value)"
+  (ngSubmit)="form.valid && modelChange.emit(form.control.getRawValue())"
   #form="ngForm"
   class="job-ad"
 >

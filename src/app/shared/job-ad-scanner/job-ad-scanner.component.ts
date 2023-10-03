@@ -46,7 +46,7 @@ export class JobAdScannerComponent {
 
     if (skill) {
       const control = ngModel.control as FormControl<string[]>;
-      control.setValue([...(control.getRawValue() ?? []), skill]);
+      control.setValue([...(control.value ?? []), skill]);
     }
 
     event.chipInput.clear();
@@ -54,10 +54,12 @@ export class JobAdScannerComponent {
 
   protected removeKeyword(skill: string, ngModel: NgModel) {
     const control = ngModel.control as FormControl<string[]>;
-    const index = control.getRawValue().indexOf(skill);
+    const skills = [...control.value];
+    const index = skills.indexOf(skill);
 
     if (index >= 0) {
-      control.setValue(control.getRawValue().splice(index, 1));
+      skills.splice(index, 1);
+      control.setValue(skills);
     }
   }
 }
