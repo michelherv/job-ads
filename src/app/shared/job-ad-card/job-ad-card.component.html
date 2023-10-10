@@ -42,7 +42,7 @@
 <span
   class="property-value property-created-at"
   [attr.aria-label]="'Job ad created at'"
-  >{{ model.createdAt | date }}</span
+  >{{ model.createdAt | date : 'mediumDate' }}</span
 >
 
 <span class="property-name property-updated-at" aria-hidden="true"
@@ -51,5 +51,5 @@
 <span
   class="property-value property-updated-at"
   [attr.aria-label]="'Job ad updated at'"
-  >{{ model.updatedAt | date }}</span
+  >{{ model.updatedAt | date : 'mediumDate' }}</span
 >

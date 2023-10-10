@@ -1,4 +1,6 @@
+import { formatDate } from '@angular/common';
 import { HttpEvent, HttpHandlerFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import { LOCALE_ID, inject } from '@angular/core';
 import { JobAd } from '@jobcloud/admin/models/job-ad';
 import { JobAdDto } from '@jobcloud/admin/models/job-ad.dto';
 import { Observable, of, throwError } from 'rxjs';
@@ -18,10 +20,25 @@ export const JobAdApi = (request: HttpRequest<unknown>, next: HttpHandlerFn): Ob
         })
       );
     } else {
+      const query = request.params.get('query')?.toLocaleLowerCase() ?? '';
+      const searchResult = items
+        .map((item) => ({
+          value: item,
+          hash: Object.values({
+            ...item,
+            createdAt: formatDate(item.createdAt, 'mediumDate', inject(LOCALE_ID)),
+            updatedAt: formatDate(item.updatedAt, 'mediumDate', inject(LOCALE_ID)),
+          })
+            .join('###')
+            .toLowerCase(),
+        }))
+        .filter((record) => record.hash.indexOf(query) >= 0)
+        .map((record) => record.value);
+
       return of(
         new HttpResponse({
           status: 200,
-          body: { items: items, offset: 0, length: items.length, total: items.length },
+          body: { items: searchResult, offset: 0, length: searchResult.length, total: searchResult.length },
         })
       );
     }
