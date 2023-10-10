@@ -11,6 +11,15 @@
     justify-self: end;
   }
 
+  .search-bar {
+    grid-column: 1 / -1;
+    height: 3em;
+    padding: 0.5em 3em;
+    border: solid thin rgba(#000000, 0.3);
+    @include mat.elevation(2);
+    @include mat.elevation-transition();
+  }
+
   .job-ads {
     grid-column: 1 / -1;
     margin: 0;

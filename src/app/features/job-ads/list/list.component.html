@@ -10,6 +10,8 @@
   <mat-icon>add</mat-icon>
 </a>
 
+<input type="text" class="search-bar" #searchBar />
+
 <ng-container *ngIf="page$ | async as page">
   <ul class="job-ads" *ngIf="page.items.length">
     <li
