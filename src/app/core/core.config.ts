@@ -11,7 +11,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 export const CORE_CONFIG: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideHttpClient(withInterceptors([JobAdApi])),
+    provideHttpClient(/*withInterceptors([JobAdApi])*/),
     provideRouter(CORE_ROUTES, withEnabledBlockingInitialNavigation()),
     provideStore(),
     provideStoreDevtools({
@@ -22,6 +22,6 @@ export const CORE_CONFIG: ApplicationConfig = {
       traceLimit: 75,
       connectOutsideZone: true,
     }),
-    { provide: API_URL, useValue: 'http://jobcloud.test/api' },
+    { provide: API_URL, useValue: 'http://localhost:3000' },
   ],
 };
