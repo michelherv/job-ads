@@ -22,7 +22,12 @@ import {
 } from '@jobcloud/admin/stores/job-ad/job-ad.actions';
 import { API_URL } from '@jobcloud/backend/config';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
+import { Action } from '@ngrx/store';
+
+const toPageOperator =
+  <T>(): ((source: Observable<T[]>) => Observable<Page<T>>) =>
+    (source) => source.pipe(map((items) => ({items, offset: 0, length: items.length, total: items.length})));
 
 @Injectable()
 export class JobAdEffects {
@@ -44,7 +49,7 @@ export class JobAdEffects {
     return this.actions$.pipe(
       ofType(jobAdGetBy),
       switchMap(({ filter }) =>
-        this.httpClient.get<Page<JobAdDto>>(`${this.backendUrl}/job-ads`, { params: toParams(filter) })
+        this.httpClient.get<JobAdDto[]>(`${this.backendUrl}/job-ads`, { params: toParams(filter) }).pipe(toPageOperator())
       ),
       map((page) => jobAdGetBySuccess({ page }))
     );
