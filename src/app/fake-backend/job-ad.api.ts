@@ -6,10 +6,11 @@ import { JobAdDto } from '@jobcloud/admin/models/job-ad.dto';
 import { Observable, of, throwError } from 'rxjs';
 import { generateId, records } from './job-ad.data';
 
+let items = [...records];
+
 export const JobAdApi = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
   const baseUrl = 'http://jobcloud.test/api';
   const id = request.url.replace(baseUrl, '').match(/\/job-ads\/(?<id>[0-9]+)/)?.groups?.['id'];
-  let items = [...records];
 
   if ('GET' === request.method) {
     if (id) {
